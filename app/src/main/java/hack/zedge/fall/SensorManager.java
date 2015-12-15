@@ -39,7 +39,7 @@ public class SensorManager implements SensorEventListener {
             double a = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)));
 
             // System.out.println(MessageFormat.format("[{0}, {1}, {2}] : {3}", x, y, z, a));
-            if ( a < 10.5 && a > 8.75 && (lastFall + 4000) < System.currentTimeMillis()) {
+            if ( a < 10.5 && a > 8.75 && (lastFall + 2000) < System.currentTimeMillis()) {
                 threshold++;
                 if (threshold > 10) {
                     threshold = 0;
@@ -53,7 +53,7 @@ public class SensorManager implements SensorEventListener {
                 threshold =0;
             }
 
-            if ( a < 5 && felt == true && (lastHit + 4000) < System.currentTimeMillis()) {
+            if ( a < 5 && felt == true && (lastHit + 2000) < System.currentTimeMillis()) {
                 lastHit = System.currentTimeMillis();
                 felt = false;
                 mFallDetectionListener.hitDetected(true);

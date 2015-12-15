@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
     private int breakscreen[] = {R.mipmap.screen_broken_01, R.mipmap.screen_broken_02, R.mipmap.screen_broken_03, R.mipmap.screen_broken_04};
 
     private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh, R.raw.ahh};
-    private int[] hitsR = {R.raw.breaking_glass};//, };
+    private int[] hitsR = {R.raw.breaking_glass, R.raw.small_glass, R.raw.smash};//, };
 
     ArrayList<MediaPlayer> screams = null;
     ArrayList<MediaPlayer> hits = null;
@@ -89,7 +89,6 @@ public class MainActivity extends Activity {
                 MediaPlayer mp2 = hits.get(thingy);
 
                 mp2.start();
-
             }
         });
     }

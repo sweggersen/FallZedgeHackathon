@@ -6,6 +6,8 @@ import android.hardware.*;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.MediaController;
@@ -26,6 +28,13 @@ public class MainActivity extends Activity {
 
     ArrayList<MediaPlayer> screams = null;
     ArrayList<MediaPlayer> hits = null;
+
+
+    @Override
+    public boolean onTouchEvent(MotionEvent me) {
+        mBackground.setBackgroundDrawable(getResources().getDrawable(R.mipmap.screen_normal));
+        return true;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

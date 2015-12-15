@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
     private RelativeLayout mBackground;
     private int[] colors = { Color.parseColor("#F44336"), Color.parseColor("#E91E63"), Color.parseColor("#9C27B0") };
     private Random random;
-    private int breakscreen[] = {R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
+    private int breakscreen[] = {R.mipmap.screen_broken_01, R.mipmap.screen_broken_02, R.mipmap.screen_broken_03, R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
 
     private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh};
     private int[] hitsR = {R.raw.breaking_glass};//, };

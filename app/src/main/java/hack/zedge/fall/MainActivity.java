@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.MediaController;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import java.util.ArrayList;
@@ -20,8 +21,11 @@ public class MainActivity extends Activity {
     private Random random;
     private int breakscreen[] = {R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
 
-    MediaPlayer mp = null;
-    MediaPlayer mp2 = null;
+    private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh};
+    private int[] hitsR = {R.raw.breaking_glass};//, };
+
+    ArrayList<MediaPlayer> screams = null;
+    ArrayList<MediaPlayer> hits = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +34,26 @@ public class MainActivity extends Activity {
                              WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+        screams = new ArrayList<>();
+        hits = new ArrayList<>();
+
+        for (int i = 0; i < screamsR.length; i++) {
+            MediaPlayer mp;
+            mp = MediaPlayer.create(this, screamsR[i]);
+            screams.add(mp);
+        }
+
+        for (int i = 0; i < hitsR.length; i++) {
+            MediaPlayer mp;
+            mp = MediaPlayer.create(this, hitsR[i]);
+            hits.add(mp);
+        }
+
+        screams.add(new MediaPlayer());
+
         mBackground = (RelativeLayout) findViewById(R.id.background);
         mBackground.setBackgroundDrawable(getResources().getDrawable(R.mipmap.screen_normal));
 
-        mp = MediaPlayer.create(this, R.raw.wilhelm);
-        mp2 = MediaPlayer.create(this, R.raw.breaking_glass);
 
         random = new Random();
         SensorManager manager = new SensorManager(this, new SensorManager.FallDetectedListener() {
@@ -43,7 +62,8 @@ public class MainActivity extends Activity {
                 // Fall detected
 
                 //Toast.makeText(MainActivity.this, "Fall detected", Toast.LENGTH_SHORT).show();
-
+                int thing = Math.round(random.nextFloat()*(screams.size()-1));
+                MediaPlayer mp = screams.get(thing);
                 mp.start();
             }
 
@@ -54,6 +74,10 @@ public class MainActivity extends Activity {
                 int val = breakscreen[thing];
                 mBackground = (RelativeLayout) findViewById(R.id.background);
                 mBackground.setBackgroundDrawable(getResources().getDrawable(val));
+
+                int thingy = Math.round(random.nextFloat()*(hits.size()-1));
+                MediaPlayer mp2 = hits.get(thingy);
+
                 mp2.start();
 
             }

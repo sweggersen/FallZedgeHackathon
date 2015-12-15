@@ -1,7 +1,9 @@
 package hack.zedge.fall;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -52,6 +54,10 @@ public class MainActivity extends Activity {
             mp = MediaPlayer.create(this, hitsR[i]);
             hits.add(mp);
         }
+
+        AudioManager mgr = (AudioManager)getBaseContext().getSystemService(Context.AUDIO_SERVICE);
+
+        mgr.setStreamVolume(AudioManager.STREAM_MUSIC,100,0);
 
         screams.add(new MediaPlayer());
 

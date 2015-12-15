@@ -11,11 +11,13 @@ public class SensorManager implements SensorEventListener {
 
     private android.hardware.SensorManager mSensorManager;
     private FallDetectedListener mFallDetectionListener;
+    private boolean felt = false;
 
     public static final int SENSOR_PULL_FREQ = 40000; // in Hz
 
     private long lastFall = 0;
-
+    private long lastHit = 0;
+    private long threshold = 0;
     public SensorManager(Context context, FallDetectedListener listener) {
         mFallDetectionListener = listener;
 
@@ -37,14 +39,29 @@ public class SensorManager implements SensorEventListener {
             double a = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)));
 
             // System.out.println(MessageFormat.format("[{0}, {1}, {2}] : {3}", x, y, z, a));
-            if (a > 8 && lastFall + 2000 < System.currentTimeMillis()) {
-                lastFall = System.currentTimeMillis();
-                mFallDetectionListener.fallDetected(true);
+            if ( a < 10.5 && a > 8.75 && lastFall + 2000 < System.currentTimeMillis()) {
+                threshold++;
+                if (threshold > 10) {
+                    lastFall = System.currentTimeMillis();
+                    felt = true;
+                    mFallDetectionListener.fallDetected(true);
+                }
+            }
+
+            if ( a < 2 ) {
+                threshold =0;
+            }
+
+            if ( a < 5 && felt == true && lastHit + 2000 < System.currentTimeMillis()) {
+                lastHit = System.currentTimeMillis();
+                felt = false;
+                mFallDetectionListener.hitDetected(true);
             }
         }
     }
 
     public interface FallDetectedListener {
         void fallDetected(boolean fall);
+        void hitDetected(boolean fall);
     }
 }

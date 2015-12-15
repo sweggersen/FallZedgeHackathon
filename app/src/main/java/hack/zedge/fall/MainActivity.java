@@ -2,17 +2,12 @@ package hack.zedge.fall;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.hardware.*;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MotionEvent;
-import android.view.View;
+
 import android.view.WindowManager;
-import android.widget.LinearLayout;
-import android.widget.MediaController;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,7 +16,7 @@ public class MainActivity extends Activity {
     private RelativeLayout mBackground;
     private int[] colors = { Color.parseColor("#F44336"), Color.parseColor("#E91E63"), Color.parseColor("#9C27B0") };
     private Random random;
-    private int breakscreen[] = {R.mipmap.screen_broken_01, R.mipmap.screen_broken_02, R.mipmap.screen_broken_03, R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
+    private int breakscreen[] = {R.mipmap.screen_broken_01, R.mipmap.screen_broken_02, R.mipmap.screen_broken_03, R.mipmap.screen_broken_04};
 
     private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh, R.raw.ahh};
     private int[] hitsR = {R.raw.breaking_glass};//, };

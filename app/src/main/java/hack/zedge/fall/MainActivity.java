@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
     private Random random;
     private int breakscreen[] = {R.mipmap.screen_broken_01, R.mipmap.screen_broken_02, R.mipmap.screen_broken_03, R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
 
-    private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh};
+    private int[] screamsR = {R.raw.wilhelm, R.raw.cat_scream, R.raw.doh, R.raw.ahh};
     private int[] hitsR = {R.raw.breaking_glass};//, };
 
     ArrayList<MediaPlayer> screams = null;

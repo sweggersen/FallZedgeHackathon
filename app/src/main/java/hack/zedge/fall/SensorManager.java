@@ -14,6 +14,8 @@ public class SensorManager implements SensorEventListener {
 
     public static final int SENSOR_PULL_FREQ = 40000; // in Hz
 
+    private long lastFall = 0;
+
     public SensorManager(Context context, FallDetectedListener listener) {
         mFallDetectionListener = listener;
 
@@ -34,8 +36,9 @@ public class SensorManager implements SensorEventListener {
             double z = event.values[2];
             double a = Math.round(Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2)));
 
-            System.out.println(MessageFormat.format("[{0}, {1}, {2}] : {3}", x, y, z, a));
-            if (a < 0.1) {
+            // System.out.println(MessageFormat.format("[{0}, {1}, {2}] : {3}", x, y, z, a));
+            if (a > 4 && lastFall + 2000 < System.currentTimeMillis()) {
+                lastFall = System.currentTimeMillis();
                 mFallDetectionListener.fallDetected(true);
             }
         }

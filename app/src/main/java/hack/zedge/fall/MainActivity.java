@@ -10,7 +10,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
-
+import java.util.ArrayList;
 import java.util.Random;
 
 public class MainActivity extends Activity {
@@ -18,6 +18,7 @@ public class MainActivity extends Activity {
     private RelativeLayout mBackground;
     private int[] colors = { Color.parseColor("#F44336"), Color.parseColor("#E91E63"), Color.parseColor("#9C27B0") };
     private Random random;
+    private int breakscreen[] = {R.mipmap.screen_broken_04, R.mipmap.screen_youbrokeme};
 
     MediaPlayer mp = null;
     MediaPlayer mp2 = null;
@@ -49,8 +50,10 @@ public class MainActivity extends Activity {
             @Override
             public void hitDetected(boolean fall) {
                 //Toast.makeText(MainActivity.this, "Hit detected", Toast.LENGTH_SHORT).show();
+                int thing = Math.round(random.nextFloat()*(breakscreen.length-1));
+                int val = breakscreen[thing];
                 mBackground = (RelativeLayout) findViewById(R.id.background);
-                mBackground.setBackgroundDrawable(getResources().getDrawable(R.mipmap.screen_broken_04));
+                mBackground.setBackgroundDrawable(getResources().getDrawable(val));
                 mp2.start();
 
             }
